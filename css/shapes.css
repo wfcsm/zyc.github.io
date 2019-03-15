@@ -1,38 +1,57 @@
-main >.yin-yang {
+main>.yin-yang {
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
-}   
-.clearfix::after{
+}
+
+.clearfix::after {
     content: '';
     display: block;
     clear: both;
 }
-#yin-yang{
+
+@keyframes animationFrames {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#yin-yang {
     float: left;
     width: 290px;
-    box-sizing: content-box;/*用来定义这个元素的总宽度和高度*/
+    box-sizing: content-box;
+    /*用来定义这个元素的总宽度和高度*/
     height: 145px;
     background: #eee;
     border-color: black;
     border-style: solid;
-    border-width: 5px 5px 150px 5px; /*底部border给它50px,让他看起来像个正方形*/
+    border-width: 5px 5px 150px 5px;
+    /*底部border给它50px,让他看起来像个正方形*/
     border-radius: 100%;
     position: relative;
+    animation: animationFrames linear 6s;
+    animation-iteration-count: infinite;
 }
-#yin-yang::before{
-    content: ""; /*before和after这些伪元素必须配合content使用*/
+
+#yin-yang::before {
+    content: "";
+    /*before和after这些伪元素必须配合content使用*/
     position: absolute;
     top: 50%;
     left: 0;
     background: #eee;
     width: 45px;
     height: 44px;
-    border:50px solid black;
+    border: 50px solid black;
     border-radius: 100%;
     box-sizing: content-box;
 }
-#yin-yang::after{
+
+#yin-yang::after {
     content: "";
     position: absolute;
     bottom: -50%;
@@ -44,8 +63,9 @@ main >.yin-yang {
     border: 50px solid #eee;
     box-sizing: content-box;
 }
+
 /**************************************/
-#yin-yang2{
+#yin-yang2 {
     float: right;
     width: 145px;
     height: 290px;
@@ -53,30 +73,35 @@ main >.yin-yang {
     border-color: black;
     border-width: 5px 150px 5px 5px;
     border-style: solid;
-    border-radius: 100%; 
+    border-radius: 100%;
     position: relative;
     box-sizing: content-box;
+    animation: animationFrames linear 6s;
+    animation-iteration-count: infinite;
 }
-#yin-yang2::before{
+
+#yin-yang2::before {
     content: '';
     width: 45px;
     height: 44px;
     background: black;
     position: absolute;
     top: 0;
-    right:-50%;
+    right: -50%;
     border-radius: 50%;
     border: 50px solid #eee;
     box-sizing: content-box;
 }
-#yin-yang2::after{
+
+#yin-yang2::after {
     content: '';
     width: 45px;
     height: 46px;
     background: #eee;
     position: absolute;
     bottom: 0;
-    left: 50%;;
+    left: 50%;
+    ;
     border: 50px solid black;
     border-radius: 50%;
     box-sizing: content-box;
