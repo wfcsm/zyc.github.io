@@ -44,14 +44,14 @@
         <div class="mask"></div>
     </div>
     <main>
-        <div class="userCard">
+        <div class="userCard" >
             <div class="textAndPicture clearfix">
                 <div class="picture">
                     <img src="./img/avatar.jpg" width="299" height="347" alt="头像">
                 </div>
                 <div class="text">
 
-                    <span class="welcome">Hello<span class="triangle"></span></span>
+                    <span class="welcome">HELLO<span class="triangle"></span></span>
                     <h1>ZZZZZ</h1>
                     <p>前端开发工程师</p>
                     <hr>
@@ -84,36 +84,69 @@
                 </a>
             </footer>
         </div>
-        <a href="#" class="button">下载PDF简历</a>
-        <p>
-            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br>
-            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+        <p class="button-wrapper">
+            <a href="#" class="button" >下载PDF简历</a>
+        </p>
+        
+        <p class="introduction">
+            <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br>
+            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+            Hello! I’m Robert Smith. Senior Web Developer specializing in front end development. 
+            Experienced with all stages of the development cycle for dynamic web projects. Well-versed in numerous programming languages including 
+            JavaScript, SQL, and C. Stng background in project management and customer relations.
         </p>
     </main>
-    <section>
-        <h2>技能</h2>
-        <ol>
-            <li>HTML 5 &apm; CSS 3</li>
-            <li>JavaScript</li>
-            <li>jQuery</li>
-            <li>Vue</li>
-            <li>React</li>
-            <li>HTTP</li>
+    <section class="content">
+        <h2 class="title">技 能</h2>
+        <ol class="skills clearfix">
+            <li>HTML 5 &amp; CSS 3
+                <div class="bar" style="width:350px;"></div>
+            </li>
+            <li>JavaScript
+                <div class="bar" style="width:380px;"></div>
+            </li>
+            <li>jQuery
+                <div class="bar" style="width:380px;"></div>
+            </li>
+            <li>Vue
+                <div class="bar" style="width:380px;"></div>
+            </li>
+            <li>React
+                <div class="bar" style="width:360px;"></div>
+            </li>
+            <li>HTTP
+                <div class="bar" style="width:300px;"></div>
+            </li>
         </ol>
     </section>
-    <section>
-        <h2>作 品 集</h2>
-        <nav>
-            <ol>
-                <li>所以</li>
-                <li>框架</li>
-                <li>元素JS &amp; CSS</li>
+    <section class="content">
+        <h2 class="title">作 品 集</h2>
+        <nav class="userSkills" >
+            <ol class="clearfix">
+                <li id="skill1">所有</li>
+                <li id="skill2">框架</li>
+                <li id="skill3">原生JS&amp;CSS</li>
             </ol>
+            <div class="chooseSkill">
+                <div id="active" class="active1"></div>
+            </div>
+            <script>
+                skill1.onclick=function(e){
+                   document.getElementById("active").setAttribute("class","active1")
+                }
+                skill2.onclick=function(e){
+                   document.getElementById("active").setAttribute("class","active2")
+                }
+                skill3.onclick=function(e){
+                   document.getElementById("active").setAttribute("class","active3")
+                }
+            </script>
         </nav>
-        <div class="jobs">
+        <div class="jobs clearfix">
             <div class="big"></div>
             <div class="small"></div>
-            <div class="small"></div>
+            <div class="small small-2"></div>
         </div>
     </section>
 </body>

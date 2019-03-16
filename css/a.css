@@ -17,6 +17,9 @@ hr{
     border-top: 1px solid #dedede;
 
 }
+ul,ol{
+    list-style: none;
+}
 .clearfix::after{
     content: '';
     display: block;
@@ -96,6 +99,8 @@ hr{
     margin-left:  auto;
     margin-right: auto;
     background-color: white;
+    margin-top:-345px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)
 }
 .userCard .welcome {
     background: #e6686a;
@@ -105,6 +110,8 @@ hr{
     position: relative;
     display: inline-block;
     margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
 }
 .userCard .triangle {
     position: absolute;
@@ -125,10 +132,20 @@ hr{
     width: 470px;
 }
 .userCard .text h1 {
-    margin-top: 18px;
+    margin-top: 13px;
+    color: #3d4451;
+    font-size: 30px;
+    line-height: 39px;
 }
+.userCard .text p {
+
+    color: #535965;
+    font-family: "Open Sans";
+    font-weight: 400;
+}
+
 .userCard .text hr {
-    margin: 20px 0;
+    margin: 25px 0;
 }
 .userCard .textAndPicture {
     padding: 50px;
@@ -136,7 +153,8 @@ hr{
 .userCard dl dt,
 .userCard dl dd {
     float: left;
-    padding: 5px 0;
+    padding: 13px 0;
+
 }
 .userCard dl dt {
     width: 30%;
@@ -170,3 +188,154 @@ hr{
     /* margin: 0 16px; */
     vertical-align: top;
 }
+main > .button-wrapper {
+    max-width:940px ;
+    margin:35px auto 40px;
+    text-align: center;
+
+}
+main .button-wrapper> .button {
+    border: 1px solid #cbcdcf;
+    color: #3d4451;
+    padding:21px 50px;
+    font-size: 15px; 
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 3px;
+    transition: all .3s ease-in;
+    font-family: STXihei, "Microsoft YaHei";
+}
+main .button-wrapper> .button:hover{
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+main .introduction {
+    max-width: 940px;
+    /* border: 1px solid red; */
+    margin: 0 auto;
+    text-align: center;
+    font-size: 20px;
+    line-height: 35px;
+    font-family: Helvetica, Tahoma, Arial, "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
+    font-family: Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
+}
+.content{
+    max-width: 940px;
+    margin: 0 auto;
+    /* border: 1px solid red; */
+    margin-top: 75px;
+
+}
+.content >.title {
+    color:  #3d4451;
+    font-size: 34px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+.content .skills {
+    background: white;
+    box-sizing: border-box;
+    padding: 40px 50px 50px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+}
+.content .skills>li{
+    float: left;
+    width: 50%;
+    font-size: 14px;
+    color: #3d4451;
+    box-sizing: border-box;
+    padding: 0 15px;
+    margin-bottom:40px;
+    position: relative;
+    font-family: Helvetica, Tahoma, Arial, "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
+    font-family: Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
+}
+.content .skills>li:nth-last-child(-n+2){
+    margin-bottom:0;
+}
+.content .skills >li> .bar{
+    margin-top: 5px;
+    height: 5px;
+    width: 0px;
+    background: #e06567;
+    position: absolute;
+    z-index: 999;
+    border-radius: 5px;
+}
+.content .skills >li::after{
+    content: '';
+    display: block;
+    margin-top: 5px;
+    height: 5px;
+    background: #e06567;
+    opacity: 0.5;
+    border-radius: 5px;
+}
+.content .userSkills {
+    text-align: center;
+}
+.content .userSkills > ol {
+    display: inline-block;
+}
+.content .userSkills > ol > li {
+    float: left;
+    font-size: 20px;
+    padding: 0 10px;
+    cursor: pointer;
+    /*小米字体写法*/
+    font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+}
+
+.content .chooseSkill {
+    /* border: 1px solid red; */
+    margin: 10px auto 35px;
+    width: 200px;
+    height: 5px;
+    background: white;
+    border-radius: 5px;
+    
+}
+.content  .chooseSkill > .active1  {
+    background: #e06567;
+    width: 48px;
+    height: 5px;
+    border-radius: 5px;
+    transition: all .3s ease-in;
+}
+.content  .chooseSkill > .active2  {
+    background: #e06567;
+    width: 48px;
+    height: 5px;
+    border-radius: 5px;
+    margin-left: 48px;
+    transition: all .5s ease-out;
+}
+.content  .chooseSkill > .active3  {
+    background: #e06567;
+    width: 104px;
+    height: 5px;
+    border-radius: 5px;
+    margin-left: 96px;
+    transition: all .3s ease-in;
+}
+
+.content .jobs>.big{
+    background: url(../img/big.jpg) no-repeat;
+    height: 570px;
+    width: 600px;
+    float: left;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+
+}
+.content .jobs>.small{
+    background: url(../img/small1.jpg) no-repeat;
+    width: 290px;
+    height:275px;
+    float: left;
+    margin-left: 50px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+}
+.content .jobs>.small-2 {
+    margin-top:20px;
+}
+
+
