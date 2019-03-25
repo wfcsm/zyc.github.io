@@ -1,60 +1,97 @@
-body{
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+body {
     background: #efefef;
     /* color: white; */
     margin: 0;
 }
-a{
+
+a {
     color: inherit;
     text-decoration: none;
 }
-*{
-    margin:0;
+
+* {
+    margin: 0;
     padding: 0;
 }
-hr{
+
+hr {
     height: 0;
     border: none;
     border-top: 1px solid #dedede;
 
 }
-ul,ol{
+
+ul,
+ol {
     list-style: none;
 }
-.clearfix::after{
+
+.clearfix::after {
     content: '';
     display: block;
     clear: both;
 }
-.topNavBar  .logo {
+
+.topNavBar.sticky{
+    background: white;
+    padding: 12px 0;
+    z-index: 2;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16),
+                0 6px 10px rgba(0, 0, 0, 0.23);
+}
+
+
+
+
+
+
+.topNavBar .logo {
     float: left;
 }
+
 .topNavBar {
     padding-top: 20px;
-    padding-bottom: 12px;
+    padding-bottom: 20px;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    transition: all 1s;
 }
+
 .topNavBar-inner {
     padding: 0 16px;
 }
-.topNavBar  nav {
+
+.topNavBar nav {
     float: right;
     padding-top: 7px;
 }
-.topNavBar  nav > ul{
+
+.topNavBar nav>ul {
     list-style: none;
     margin: 0;
     padding: 0;
     /* border: 1px solid red */
 }
-.topNavBar  nav > ul > li{
+
+.topNavBar nav>ul>li {
     float: left;
     margin-left: 17px;
     margin-right: 17px;
+    position: relative;
+    /* border:1px solid red; */
 }
-.topNavBar  nav > ul >li>a {
+
+.topNavBar nav>ul>li>a {
     font-size: 12px;
     color: #b7b7b7;
     font-weight: bold;
@@ -63,9 +100,58 @@ ul,ol{
     display: block;
     border-top: 3px solid transparent;
     border-bottom: 3px solid transparent;
+    position: relative;
+    /* display: block; */
 }
-.topNavBar  nav > ul >li>a:hover{
-    border-bottom: 3px solid #e06567;
+.topNavBar nav>ul>li:hover::after{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: 3px;
+    background: #e06567;
+    animation: navhover .3s; 
+}
+
+@keyframes navhover{
+    0%{
+        width: 0;
+        
+    }
+    100%{
+        width: 100%;
+        /* background: #e06567; */
+    }
+}
+
+.topNavBar .submenu{
+    position: absolute;
+    background: white;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, .12),
+                0 1px 4px rgba(0, 0, 0, .24);
+    right: 0;
+    top: 100% ;
+    /* animation: submenu .3s; */
+    display: none;
+    /* z-index: 2; */
+}
+.topNavBar .submenu.active{
+    display: block;
+}
+/* @keyframes submenu{
+    0%{ 
+        display: none;
+        transform: translateX(-100%)
+    }
+    100%{
+        display: block;
+        transform: translate(100%)；
+    }
+} */
+.topNavBar .submenu >li>a {
+    padding: 10px 20px;
+    display: block;
 }
 
 .topNavBar .logo {
@@ -74,34 +160,40 @@ ul,ol{
     padding-top: 3px;
     padding-bottom: 4px;
 }
+
 .topNavBar .logo .rs {
     margin-right: 4px;
     color: #e6686a;
 }
+
 .topNavBar .logo .card {
     color: #9a9da2;
 }
-.banner{
+
+.banner {
     background: url(../img/rs-cover.jpg);
     /* border: 1px solid red; */
     height: 515px;
     background-position: center center;
     background-size: cover;
 }
-.banner .mask{
+
+.banner .mask {
     height: 515px;
     background: rgba(0, 0, 0, .7);
 
 }
-.userCard{
+
+.userCard {
     /* border: 1px solid red; */
     max-width: 940px;
-    margin-left:  auto;
+    margin-left: auto;
     margin-right: auto;
     background-color: white;
-    margin-top:-345px;
+    margin-top: -345px;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)
 }
+
 .userCard .welcome {
     background: #e6686a;
     color: white;
@@ -113,30 +205,35 @@ ul,ol{
     font-size: 14px;
     font-weight: bold;
 }
+
 .userCard .triangle {
     position: absolute;
     display: block;
     width: 0;
-    border:10px solid transparent;
+    border: 10px solid transparent;
     border-top-width: 0px;
     border-left-color: #e6686a;
     left: 4px;
-    top: 100%; 
+    top: 100%;
 }
+
 .userCard .picture {
     float: left;
 }
+
 .userCard .text {
     float: left;
     margin-left: 65px;
     width: 470px;
 }
+
 .userCard .text h1 {
     margin-top: 13px;
     color: #3d4451;
     font-size: 30px;
     line-height: 39px;
 }
+
 .userCard .text p {
 
     color: #535965;
@@ -147,29 +244,35 @@ ul,ol{
 .userCard .text hr {
     margin: 25px 0;
 }
+
 .userCard .textAndPicture {
     padding: 50px;
 }
+
 .userCard dl dt,
 .userCard dl dd {
     float: left;
     padding: 13px 0;
 
 }
+
 .userCard dl dt {
     width: 30%;
     font-weight: bold;
 }
+
 .userCard dl dd {
     width: 70%;
     color: #9da0a7;
 }
-.userCard > footer.media{
+
+.userCard>footer.media {
     background: #e6686a;
     text-align: center;
 
 }
-.userCard > footer.media > a {
+
+.userCard>footer.media>a {
     /* border: 1px solid black; */
     display: inline-block;
     border-radius: 50%;
@@ -178,36 +281,42 @@ ul,ol{
     padding: 10px 0;
     margin: 16px;
 }
-.userCard > footer.media > a:hover{
+
+.userCard>footer.media>a:hover {
     background: #cf5d5f;
 }
-.userCard svg{
+
+.userCard svg {
     width: 30px;
     height: 30px;
     fill: white;
     /* margin: 0 16px; */
     vertical-align: top;
 }
-main > .button-wrapper {
-    max-width:940px ;
-    margin:35px auto 40px;
+
+main>.button-wrapper {
+    max-width: 940px;
+    margin: 35px auto 40px;
     text-align: center;
 
 }
-main .button-wrapper> .button {
+
+main .button-wrapper>.button {
     border: 1px solid #cbcdcf;
     color: #3d4451;
-    padding:21px 50px;
-    font-size: 15px; 
+    padding: 21px 50px;
+    font-size: 15px;
     display: inline-block;
     vertical-align: top;
     border-radius: 3px;
     transition: all .3s ease-in;
     font-family: STXihei, "Microsoft YaHei";
 }
-main .button-wrapper> .button:hover{
+
+main .button-wrapper>.button:hover {
     box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
+
 main .introduction {
     max-width: 940px;
     /* border: 1px solid red; */
@@ -218,50 +327,57 @@ main .introduction {
     font-family: Helvetica, Tahoma, Arial, "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
     font-family: Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
 }
-.content{
+
+.content {
     max-width: 940px;
     margin: 0 auto;
     /* border: 1px solid red; */
     margin-top: 75px;
 
 }
-.content >.title {
-    color:  #3d4451;
+
+.content>.title {
+    color: #3d4451;
     font-size: 34px;
     text-align: center;
     margin-bottom: 25px;
 }
+
 .content .skills {
     background: white;
     box-sizing: border-box;
     padding: 40px 50px 50px;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
 }
-.content .skills>li{
+
+.content .skills>li {
     float: left;
     width: 50%;
     font-size: 14px;
     color: #3d4451;
     box-sizing: border-box;
     padding: 0 15px;
-    margin-bottom:40px;
+    margin-bottom: 40px;
     position: relative;
     font-family: Helvetica, Tahoma, Arial, "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
     font-family: Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
 }
-.content .skills>li:nth-last-child(-n+2){
-    margin-bottom:0;
+
+.content .skills>li:nth-last-child(-n+2) {
+    margin-bottom: 0;
 }
-.content .skills >li> .bar{
+
+.content .skills>li>.bar {
     margin-top: 5px;
     height: 5px;
     width: 0px;
     background: #e06567;
     position: absolute;
-    z-index: 999;
+    z-index: 1;
     border-radius: 5px;
 }
-.content .skills >li::after{
+
+.content .skills>li::after {
     content: '';
     display: block;
     margin-top: 5px;
@@ -270,19 +386,22 @@ main .introduction {
     opacity: 0.5;
     border-radius: 5px;
 }
+
 .content .userSkills {
     text-align: center;
 }
-.content .userSkills > ol {
+
+.content .userSkills>ol {
     display: inline-block;
 }
-.content .userSkills > ol > li {
+
+.content .userSkills>ol>li {
     float: left;
     font-size: 20px;
     padding: 0 10px;
     cursor: pointer;
     /*小米字体写法*/
-    font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+    font: 14px/1.5 "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
 }
 
 .content .chooseSkill {
@@ -292,16 +411,18 @@ main .introduction {
     height: 5px;
     background: white;
     border-radius: 5px;
-    
+
 }
-.content  .chooseSkill > .active1  {
+
+.content .chooseSkill>.active1 {
     background: #e06567;
     width: 48px;
     height: 5px;
     border-radius: 5px;
     transition: all .3s ease-in;
 }
-.content  .chooseSkill > .active2  {
+
+.content .chooseSkill>.active2 {
     background: #e06567;
     width: 48px;
     height: 5px;
@@ -309,7 +430,8 @@ main .introduction {
     margin-left: 48px;
     transition: all .5s ease-out;
 }
-.content  .chooseSkill > .active3  {
+
+.content .chooseSkill>.active3 {
     background: #e06567;
     width: 104px;
     height: 5px;
@@ -318,7 +440,7 @@ main .introduction {
     transition: all .3s ease-in;
 }
 
-.content .jobs>.big{
+.content .jobs>.big {
     background: url(../img/big.jpg) no-repeat;
     height: 570px;
     width: 600px;
@@ -326,16 +448,16 @@ main .introduction {
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
 
 }
-.content .jobs>.small{
+
+.content .jobs>.small {
     background: url(../img/small1.jpg) no-repeat;
     width: 290px;
-    height:275px;
+    height: 275px;
     float: left;
     margin-left: 50px;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
 }
+
 .content .jobs>.small-2 {
-    margin-top:20px;
+    margin-top: 20px;
 }
-
-

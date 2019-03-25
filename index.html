@@ -8,7 +8,7 @@
     <title>Document</title>
     <script src="//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js"></script>
     <link rel="stylesheet" href="./css/a.css">
-    <style type="text/css">
+    <style>
         .icon {
             width: 1em;
             height: 1em;
@@ -16,20 +16,93 @@
             fill: currentColor;
             overflow: hidden;
         }
+
+        .loading::before,
+        .loading::after {
+            content: "";
+            position: absolute;
+            background: black;
+            border-radius: 50%;
+            width: 0;
+            height: 0;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            animation: s 1.5s linear infinite;
+        }
+
+        .loading::after {
+            animation-delay: .75s
+        }
+
+        @keyframes s {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+
+            100% {
+                width: 100px;
+                height: 100px;
+                opacity: 0
+            }
+        }
+
+        .site-welcome {
+            height: 100%;
+            width: 100%;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: white;
+            justify-content: center;
+            align-items: center;
+            z-index: 3;
+        }
+
+        .site-welcome.active {
+            display: flex;
+        }
     </style>
 </head>
 
 <body>
-    <div class="topNavBar">
+    <div id="siteWelcome" class="site-welcome active">
+        <div class="loading"></div>
+    </div>
+
+    <div id="topNavBar" class="topNavBar">
         <div class="topNavBar-inner clearfix">
             <a class="logo" href="#" alt="logo">
                 <span class="rs">RS</span><span class="card">card</span>
             </a>
             <nav>
                 <ul class="clearfix">
-                    <li><a href="#">关于</a></li>
-                    <li><a href="#">技能</a></li>
-                    <li><a href="">作品</a></li>
+                    <li><a href="#about">关于</a></li>
+                    <li class="menuTigger">
+                        <a href="#skills">技能</a>
+                        <ul class="submenu">
+                            <li><a>JavaScript</a></li>
+                            <li><a>Vue</a></li>
+                            <li><a>HTML&CSS</a></li>
+                            <li><a>Rect</a></li>
+                            <li><a>TypeScript</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#production">作品</a>
+                        <ul class="submenu">
+                            <li><a>JavaScript</a></li>
+                            <li><a>Vue</a></li>
+                            <li><a>HTML&CSS</a></li>
+                            <li><a>Rect</a></li>
+                            <li><a>TypeScript</a></li>
+                        </ul>
+                    </li>
                     <li><a href="">博客 </a></li>
                     <li><a href="">日历 </a></li>
                     <li><a href="">联系方式 </a></li>
@@ -39,18 +112,17 @@
             </nav>
         </div>
     </div>
-    
+
     <div class="banner">
         <div class="mask"></div>
     </div>
     <main>
-        <div class="userCard" >
+        <div id="about" class="userCard">
             <div class="textAndPicture clearfix">
                 <div class="picture">
                     <img src="./img/avatar.jpg" width="299" height="347" alt="头像">
                 </div>
                 <div class="text">
-
                     <span class="welcome">HELLO<span class="triangle"></span></span>
                     <h1>ZZZZZ</h1>
                     <p>前端开发工程师</p>
@@ -63,7 +135,6 @@
                         <dt>手机</dt>
                         <dd>111111111111</dd>
                     </dl>
-
                 </div>
             </div>
             <footer class="media">
@@ -88,16 +159,17 @@
         <p class="button-wrapper">
             <a href="./resume.txt" class="button" download="">下载PDF简历</a>
         </p>
-        
+
         <p class="introduction">
             <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br>
             XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
-            Hello! I’m Robert Smith. Senior Web Developer specializing in front end development. 
-            Experienced with all stages of the development cycle for dynamic web projects. Well-versed in numerous programming languages including 
+            Hello! I’m Robert Smith. Senior Web Developer specializing in front end development.
+            Experienced with all stages of the development cycle for dynamic web projects. Well-versed in numerous
+            programming languages including
             JavaScript, SQL, and C. Stng background in project management and customer relations.
         </p>
     </main>
-    <section class="content">
+    <section id="skills" class="content">
         <h2 class="title">技 能</h2>
         <ol class="skills clearfix">
             <li>HTML 5 &amp; CSS 3
@@ -120,9 +192,9 @@
             </li>
         </ol>
     </section>
-    <section class="content">
+    <section id="production" class="content">
         <h2 class="title">作 品 集</h2>
-        <nav class="userSkills" >
+        <nav class="userSkills">
             <ol class="clearfix">
                 <li id="skill1">所有</li>
                 <li id="skill2">框架</li>
@@ -132,14 +204,14 @@
                 <div id="active" class="active1"></div>
             </div>
             <script>
-                skill1.onclick=function(e){
-                   document.getElementById("active").setAttribute("class","active1")
+                skill1.onclick = function (e) {
+                    document.getElementById("active").setAttribute("class", "active1")
                 }
-                skill2.onclick=function(e){
-                   document.getElementById("active").setAttribute("class","active2")
+                skill2.onclick = function (e) {
+                    document.getElementById("active").setAttribute("class", "active2")
                 }
-                skill3.onclick=function(e){
-                   document.getElementById("active").setAttribute("class","active3")
+                skill3.onclick = function (e) {
+                    document.getElementById("active").setAttribute("class", "active3")
                 }
             </script>
         </nav>
@@ -149,6 +221,46 @@
             <div class="small small-2"></div>
         </div>
     </section>
+    <script>
+        let siteWelcome = document.getElementById("siteWelcome");
+        let topNavBar = document.getElementById("topNavBar");
+        setTimeout(function () {
+            siteWelcome.classList.remove("active");
+        }, 1)
+
+        window.onscroll = function (e) {
+            if (window.scrollY > 0) {
+                topNavBar.classList.add("sticky")
+            } else {
+                topNavBar.classList.remove("sticky")
+            }
+        }
+        let submenu= document.querySelectorAll(".topNavBar .submenu")
+        
+        for(let i=0;i<submenu.length;i++){
+            submenu[i].parentElement.onmouseover = function(e){
+               submenu[i].classList.add("active");
+            }  
+            submenu[i].parentElement.onmouseout = function(e){
+               submenu[i].classList.remove("active");
+            }    
+        }
+
+        let aTag = document.querySelectorAll(".topNavBar  nav>ul>li>a");
+        for(let i=0;i<aTag.length;i++){
+            aTag[i].onclick = function (e){
+                console.log(e);
+               e.preventDefault();
+               let a = e.currentTarget;
+               let href = a.getAttribute("href");
+               console.log(href);
+               let element = document.querySelector(href);
+               let top = element.offsetTop;
+               window.scrollTo(0,top - 80);
+            }
+        }
+    
+    </script>
 </body>
 
 </html>
