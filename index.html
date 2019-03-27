@@ -117,7 +117,7 @@
         <div class="mask"></div>
     </div>
     <main>
-        <div id="about" class="userCard">
+        <div id="about" data-x="about" class="userCard">
             <div class="textAndPicture clearfix">
                 <div class="picture">
                     <img src="./img/avatar.jpg" width="299" height="347" alt="头像">
@@ -169,30 +169,30 @@
             JavaScript, SQL, and C. Stng background in project management and customer relations.
         </p>
     </main>
-    <section id="skills" class="content">
+    <section id="skills" data-x="skills" class="content">
         <h2 class="title">技 能</h2>
         <ol class="skills clearfix">
             <li>HTML 5 &amp; CSS 3
-                <div class="bar" style="width:350px;"></div>
+                <div class="bar" style="width:40%"></div>
             </li>
             <li>JavaScript
-                <div class="bar" style="width:380px;"></div>
+                <div class="bar" style="width:50%"></div>
             </li>
             <li>jQuery
-                <div class="bar" style="width:380px;"></div>
+                <div class="bar" style="width:60%"></div>
             </li>
             <li>Vue
-                <div class="bar" style="width:380px;"></div>
+                <div class="bar" style="width:70%"></div>
             </li>
             <li>React
-                <div class="bar" style="width:360px;"></div>
+                <div class="bar" style="width:80%"></div>
             </li>
             <li>HTTP
-                <div class="bar" style="width:300px;"></div>
+                <div class="bar" style="width:90%"></div>
             </li>
         </ol>
     </section>
-    <section id="production" class="content">
+    <section id="production" data-x="production" class="content">
         <h2 class="title">作 品 集</h2>
         <nav class="userSkills">
             <ol class="clearfix">
@@ -221,45 +221,118 @@
             <div class="small small-2"></div>
         </div>
     </section>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
     <script>
+        setTimeout( ()=> {
+            siteWelcome.classList.remove("active");
+        }, 1000)
         let siteWelcome = document.getElementById("siteWelcome");
         let topNavBar = document.getElementById("topNavBar");
-        setTimeout(function () {
-            siteWelcome.classList.remove("active");
-        }, 1)
+        let specialTags = document.querySelectorAll("[data-x]");
+        for(let i=0;i<specialTags.length;i++){
+            specialTags[i].classList.add("offset");
+        }
 
+
+        
+
+        let bar = document.querySelectorAll(".bar");
+        for (let i = 0; i < bar.length; i++) {
+            bar[i].classList.add("offset");
+        }
+        setTimeout(() => {
+            findClosest();
+        }, 1000);
+        
         window.onscroll = function (e) {
             if (window.scrollY > 0) {
                 topNavBar.classList.add("sticky")
             } else {
                 topNavBar.classList.remove("sticky")
             }
-        }
-        let submenu= document.querySelectorAll(".topNavBar .submenu")
-        
-        for(let i=0;i<submenu.length;i++){
-            submenu[i].parentElement.onmouseover = function(e){
-               submenu[i].classList.add("active");
-            }  
-            submenu[i].parentElement.onmouseout = function(e){
-               submenu[i].classList.remove("active");
-            }    
+            findClosest();
         }
 
-        let aTag = document.querySelectorAll(".topNavBar  nav>ul>li>a");
-        for(let i=0;i<aTag.length;i++){
-            aTag[i].onclick = function (e){
-                console.log(e);
-               e.preventDefault();
-               let a = e.currentTarget;
-               let href = a.getAttribute("href");
-               console.log(href);
-               let element = document.querySelector(href);
-               let top = element.offsetTop;
-               window.scrollTo(0,top - 80);
+        function findClosest() {
+            let min = 0;
+            let special = document.querySelectorAll("[data-x]");
+            for (let i = 0; i < special.length; i++) {
+                if (Math.abs(special[i].offsetTop - window.scrollY) < Math.abs(special[min].offsetTop - window.scrollY)) {
+                    min = i;
+                }
+            }
+            special[min].classList.remove("offset");
+            let id = special[min].getAttribute("id");
+           
+            // console.log(id);
+            let a = document.querySelector("a[href='#" + id + "']");
+            // console.log(a);
+            let li = a.parentElement;
+            let brothersAndMe = li.parentNode.children
+            for (let i = 0; i < brothersAndMe.length; i++) {
+                brothersAndMe[i].classList.remove("linehigh");
+            }
+            li.classList.add("linehigh");
+        }
+
+
+       
+    
+        let submenu = document.querySelectorAll(".topNavBar .submenu")
+
+        for (let i = 0; i < submenu.length; i++) {
+            submenu[i].parentElement.onmouseover = function (e) {
+                submenu[i].classList.add("active");
+            }
+            submenu[i].parentElement.onmouseout = function (e) {
+                submenu[i].classList.remove("active");
             }
         }
-    
+
+
+
+        let aTag = document.querySelectorAll(".topNavBar  nav>ul>li>a");
+        for (let i = 0; i < aTag.length; i++) {
+            aTag[i].onclick = function (e) {
+                e.preventDefault();
+                let a = e.currentTarget;
+                let href = a.getAttribute("href");
+
+                let element = document.querySelector(href);
+                let top = element.offsetTop;
+
+                // let time = 1000;
+
+                let now = window.scrollY; //现在的位置
+                // console.log("现在的位置:"+now)
+                let target = top - 80 //目标位置
+
+                // 设置循环动画
+                function animate(time) {
+                    requestAnimationFrame(animate);
+                    TWEEN.update(time);
+                }
+                requestAnimationFrame(animate);
+
+                var coords = {
+                    y: now
+                }; // 起始点 (0, 0)
+                var tween = new TWEEN.Tween(coords) // 创建一个新的tween用来改变 'coords'
+                    .to({
+                        y: target
+                    }, 1000) // 在1s内移动至 (300, 200)
+                    .easing(TWEEN.Easing.Quadratic.Out) // 使用缓动功能使的动画更加平滑
+                    .onUpdate(function () { // 在 tween.js 更新 'coords' 后调用
+                        window.scrollTo(0, coords.y);
+                    })
+                    .start(); // 立即开始 tween
+            }
+        }
     </script>
 </body>
 

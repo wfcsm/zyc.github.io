@@ -103,7 +103,8 @@ ol {
     position: relative;
     /* display: block; */
 }
-.topNavBar nav>ul>li:hover::after{
+.topNavBar nav>ul>li:hover::after,
+.topNavBar nav>ul>li.linehigh::after{
     content: "";
     display: block;
     position: absolute;
@@ -359,6 +360,7 @@ main .introduction {
     padding: 0 15px;
     margin-bottom: 40px;
     position: relative;
+    overflow: hidden;
     font-family: Helvetica, Tahoma, Arial, "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
     font-family: Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
 }
@@ -375,6 +377,14 @@ main .introduction {
     position: absolute;
     z-index: 1;
     border-radius: 5px;
+    /* transform: translateX(0); */
+    /* transform: translateX(0);
+    transition: all 1s */
+    transform: translateX(0);
+    transition: all 1.5s
+}
+.offset .skills>li>.bar {
+    transform: translateX(-100%)
 }
 
 .content .skills>li::after {
@@ -386,6 +396,7 @@ main .introduction {
     opacity: 0.5;
     border-radius: 5px;
 }
+
 
 .content .userSkills {
     text-align: center;
@@ -460,4 +471,11 @@ main .introduction {
 
 .content .jobs>.small-2 {
     margin-top: 20px;
+}
+[data-x]{
+    transform: translateY(0);
+    transition: all .5s;
+}
+[data-x].offset{
+    transform: translateY(100px);
 }
