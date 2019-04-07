@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>苹果风格轮播</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        ul>li{
+            list-style: none;
+        }
+        .main{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f2f2f2;
+        }
+        .images-wrapper {
+            width: 920px;
+            height: 400px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            box-shadow: 0 0 3px #AAAAAA;
+            border-radius: 4px;
+        }
+        .images-wrapper>.images{
+            display: flex;
+            width: 920px;
+            height: 400px;;
+            transition:all 1s;
+        }
+
+        .images-wrapper>.images>img {
+            /* width: 920px;
+            height: 400px; */
+        }
+        .btns {
+            width: 920px;
+            background: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            border: 1px solid #eee;
+            border-top: none;
+            box-shadow: 0 0 3px #AAAAAA;
+        }
+        .btns > ul {
+            display: flex;
+            
+        }
+        .btns >ul >li {
+            width: 60px;
+            height: 45px;
+           
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+        }
+        /* .btns >ul >li>img{
+            display: inline-block;
+        
+        } */
+        .btns > ul >li.active{
+            background:#c2c2c2;
+        }
+        .btns > ul >li.active::before{
+            content: "";
+            display: block;
+            border: 8px solid white;
+            border-bottom:none;
+            border-right-color: transparent;
+            border-left-color:transparent; 
+            position: absolute;
+            top: -1px
+           
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="images-wrapper">
+            <div class="images">
+                <img src="./img/macbook.jpg" alt="macbook">
+                <img src="./img/iphone.jpg" alt="iphone">
+                <img src="./img/imac.jpg" alt="imac">
+                <img src="./img/info.jpg" alt="info">
+            </div>
+        </div>
+        <div class="btns">
+            <ul>
+                <li class="active"><img src="./img/thumb_macbook.png" alt=""></li>
+                <li><img src="./img/thumb_iphone.png" alt=""></li>
+                <li><img src="./img/thumb_imac.png" alt=""></li>
+                <li><img src="./img/thumb_about.png" alt=""></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        let $images = $(" .images-wrapper>.images")
+        let $btns = $(" .btns >ul")
+        $btns.on("click","li",function(e){
+            $(e.currentTarget).parent().children().removeClass("active")
+            let index = $(e.currentTarget).addClass("active").index()
+            let p = index *(-920)
+            $images.css({
+                transform:`translateX(${p}px)`
+            })
+        })
+
+    
+    
+    </script>
+</body>
+
+</html>
