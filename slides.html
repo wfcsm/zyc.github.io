@@ -88,6 +88,25 @@
             makeMiddle($img2)
             n++
         }, 1000)
+
+        document.addEventListener("visibilitychange", function () {
+            if (document.visibilityState === "hidden") {
+                window.clearInterval(timer)
+            } else if (document.visibilityState === "visible") {
+                timer = setInterval(() => {
+
+                    let $img1 = $img.eq(x(n))
+
+                    let $img2 = $img.eq(x(n + 1))
+
+                    makeLeft($img1).one("transitionend", (e) => {
+                        makeRight($(e.currentTarget))
+                    })
+                    makeMiddle($img2)
+                    n++
+                }, 1000)
+            }
+        });
         
 
         function makeLeft($node){
