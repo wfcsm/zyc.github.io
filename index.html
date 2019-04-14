@@ -169,7 +169,7 @@
             <div class="small"></div>
             <div class="small small-2"></div>
         </div> -->
-        
+
         <!-- 这就是view -->
         <div class="swiper-container">
             <div class="swiper-wrapper">
@@ -188,6 +188,17 @@
             <!-- <div class="swiper-scrollbar"></div> -->
         </div>
     </section>
+
+    <section id="message" class="content">
+        <h2 class="title">留言</h2>
+        <ul id="messageList"></ul>
+        <form  id="myForm">
+            姓名: <input type="text" id="username"><br>
+            留言：<textarea name="" id="leavemessage" cols="30" rows="10"></textarea>
+            <input type="submit">
+        </form>
+       
+    </section>
     <br><br><br><br><br><br><br><br><br><br><br><br><br>
     <br><br><br><br><br><br><br><br><br><br><br><br><br>
     <br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -195,7 +206,15 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+    <!-- 引入leancloud -->
+    <!-- 存储服务 -->
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.12.0/dist/av-min.js"></script>
+    <!-- 即时通讯服务 -->
+    <script src="//cdn.jsdelivr.net/npm/leancloud-realtime@4.3.0/dist/realtime.browser.min.js"></script>
     <script src="./js/site-welcome.js"></script>
+
+    <script src="./js/message.js"></script>
+
     <!-- 技能动画 -->
     <script src="./js/bar-animation.js"></script>
 
@@ -204,7 +223,7 @@
     <script src="./js/sticky-topBar.js"></script>
     <!--顶部下拉栏 -->
     <script src="./js/submenu.js"></script>
-   
+
     <script src="./js/smoothly-navigation.js"></script>
     <script>
         // setTimeout(() => {
