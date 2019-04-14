@@ -40,12 +40,75 @@ ol {
     clear: both;
 }
 
-.topNavBar.sticky{
+
+
+.loading::before,
+.loading::after {
+    content: "";
+    position: absolute;
+    background: black;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    animation: s 1.5s linear infinite;
+}
+
+.loading::after {
+    animation-delay: .75s
+}
+
+@keyframes s {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+
+    100% {
+        width: 100px;
+        height: 100px;
+        opacity: 0
+    }
+}
+
+.site-welcome {
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+.site-welcome.active {
+    display: flex;
+}
+
+/* swiper */
+.swiper-container {
+    width: 940px;
+    height: 470px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+}
+
+
+
+
+.topNavBar.sticky {
     background: white;
     padding: 12px 0;
     z-index: 2;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16),
-                0 6px 10px rgba(0, 0, 0, 0.23);
+        0 6px 10px rgba(0, 0, 0, 0.23);
 }
 
 
@@ -103,8 +166,9 @@ ol {
     position: relative;
     /* display: block; */
 }
+
 .topNavBar nav>ul>li:hover::after,
-.topNavBar nav>ul>li.linehigh::after{
+.topNavBar nav>ul>li.linehigh::after {
     content: "";
     display: block;
     position: absolute;
@@ -112,34 +176,37 @@ ol {
     width: 100%;
     height: 3px;
     background: #e06567;
-    animation: navhover .3s; 
+    animation: navhover .3s;
 }
 
-@keyframes navhover{
-    0%{
+@keyframes navhover {
+    0% {
         width: 0;
-        
+
     }
-    100%{
+
+    100% {
         width: 100%;
         /* background: #e06567; */
     }
 }
 
-.topNavBar .submenu{
+.topNavBar .submenu {
     position: absolute;
     background: white;
     box-shadow: 0 1px 6px rgba(0, 0, 0, .12),
-                0 1px 4px rgba(0, 0, 0, .24);
+        0 1px 4px rgba(0, 0, 0, .24);
     right: 0;
-    top: 100% ;
+    top: 100%;
     /* animation: submenu .3s; */
     display: none;
     /* z-index: 2; */
 }
-.topNavBar .submenu.active{
+
+.topNavBar .submenu.active {
     display: block;
 }
+
 /* @keyframes submenu{
     0%{ 
         display: none;
@@ -150,7 +217,7 @@ ol {
         transform: translate(100%)；
     }
 } */
-.topNavBar .submenu >li>a {
+.topNavBar .submenu>li>a {
     padding: 10px 20px;
     display: block;
 }
@@ -383,6 +450,7 @@ main .introduction {
     transform: translateX(0);
     transition: all 1.5s
 }
+
 .offset .skills>li>.bar {
     transform: translateX(-100%)
 }
@@ -472,10 +540,12 @@ main .introduction {
 .content .jobs>.small-2 {
     margin-top: 20px;
 }
-[data-x]{
+
+[data-x] {
     transform: translateY(0);
     transition: all .5s;
 }
-[data-x].offset{
+
+[data-x].offset {
     transform: translateY(100px);
 }

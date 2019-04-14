@@ -6,68 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <!-- 引入swiper -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+
+
+
     <script src="//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js"></script>
-    <link rel="stylesheet" href="./css/a.css">
-    <style>
-        .icon {
-            width: 1em;
-            height: 1em;
-            vertical-align: -0.15em;
-            fill: currentColor;
-            overflow: hidden;
-        }
-
-        .loading::before,
-        .loading::after {
-            content: "";
-            position: absolute;
-            background: black;
-            border-radius: 50%;
-            width: 0;
-            height: 0;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
-            animation: s 1.5s linear infinite;
-        }
-
-        .loading::after {
-            animation-delay: .75s
-        }
-
-        @keyframes s {
-            0% {
-                width: 0;
-                height: 0;
-                opacity: 1;
-            }
-
-            100% {
-                width: 100px;
-                height: 100px;
-                opacity: 0
-            }
-        }
-
-        .site-welcome {
-            height: 100%;
-            width: 100%;
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: white;
-            justify-content: center;
-            align-items: center;
-            z-index: 3;
-        }
-
-        .site-welcome.active {
-            display: flex;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
@@ -169,6 +114,8 @@
             JavaScript, SQL, and C. Stng background in project management and customer relations.
         </p>
     </main>
+
+
     <section id="skills" data-x="skills" class="content">
         <h2 class="title">技 能</h2>
         <ol class="skills clearfix">
@@ -192,9 +139,11 @@
             </li>
         </ol>
     </section>
+
+
     <section id="production" data-x="production" class="content">
         <h2 class="title">作 品 集</h2>
-        <nav class="userSkills">
+        <!--<nav class="userSkills">
             <ol class="clearfix">
                 <li id="skill1">所有</li>
                 <li id="skill2">框架</li>
@@ -214,11 +163,29 @@
                     document.getElementById("active").setAttribute("class", "active3")
                 }
             </script>
-        </nav>
-        <div class="jobs clearfix">
+        </nav> -->
+        <!-- <div class="jobs clearfix">
             <div class="big"></div>
             <div class="small"></div>
             <div class="small small-2"></div>
+        </div> -->
+        
+        <!-- 这就是view -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="./img/keyBoard.png" alt="键盘"></div>
+                <div class="swiper-slide"><img src="./img/slider.png" alt="轮播"></div>
+                <div class="swiper-slide"><img src="./img/canvas.png" alt="画板"></div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+
+            <!-- 如果需要导航按钮 -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- 如果需要滚动条 -->
+            <!-- <div class="swiper-scrollbar"></div> -->
         </div>
     </section>
     <br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -227,113 +194,132 @@
     <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+    <script src="./js/site-welcome.js"></script>
+    <!-- 技能动画 -->
+    <script src="./js/bar-animation.js"></script>
+
+    <script src="./js/swiper-init.js"></script>
+    <script src="./js/auto-slider-up.js"></script>
+    <script src="./js/sticky-topBar.js"></script>
+    <!--顶部下拉栏 -->
+    <script src="./js/submenu.js"></script>
+   
+    <script src="./js/smoothly-navigation.js"></script>
     <script>
-        setTimeout( ()=> {
-            siteWelcome.classList.remove("active");
-        }, 1000)
-        let siteWelcome = document.getElementById("siteWelcome");
-        let topNavBar = document.getElementById("topNavBar");
-        let specialTags = document.querySelectorAll("[data-x]");
-        for(let i=0;i<specialTags.length;i++){
-            specialTags[i].classList.add("offset");
-        }
-
-
-        
-
-        let bar = document.querySelectorAll(".bar");
-        for (let i = 0; i < bar.length; i++) {
-            bar[i].classList.add("offset");
-        }
-        setTimeout(() => {
-            findClosest();
-        }, 1000);
-        
-        window.onscroll = function (e) {
-            if (window.scrollY > 0) {
-                topNavBar.classList.add("sticky")
-            } else {
-                topNavBar.classList.remove("sticky")
-            }
-            findClosest();
-        }
-
-        function findClosest() {
-            let min = 0;
-            let special = document.querySelectorAll("[data-x]");
-            for (let i = 0; i < special.length; i++) {
-                if (Math.abs(special[i].offsetTop - window.scrollY) < Math.abs(special[min].offsetTop - window.scrollY)) {
-                    min = i;
-                }
-            }
-            special[min].classList.remove("offset");
-            let id = special[min].getAttribute("id");
-           
-            // console.log(id);
-            let a = document.querySelector("a[href='#" + id + "']");
-            // console.log(a);
-            let li = a.parentElement;
-            let brothersAndMe = li.parentNode.children
-            for (let i = 0; i < brothersAndMe.length; i++) {
-                brothersAndMe[i].classList.remove("linehigh");
-            }
-            li.classList.add("linehigh");
-        }
-
-
-       
-    
-        let submenu = document.querySelectorAll(".topNavBar .submenu")
-
-        for (let i = 0; i < submenu.length; i++) {
-            submenu[i].parentElement.onmouseover = function (e) {
-                submenu[i].classList.add("active");
-            }
-            submenu[i].parentElement.onmouseout = function (e) {
-                submenu[i].classList.remove("active");
-            }
-        }
+        // setTimeout(() => {
+        //     siteWelcome.classList.remove("active");
+        // }, 1000)
+        // let siteWelcome = document.getElementById("siteWelcome");
+        // let topNavBar = document.getElementById("topNavBar");
+        // let specialTags = document.querySelectorAll("[data-x]");
+        // for (let i = 0; i < specialTags.length; i++) {
+        //     specialTags[i].classList.add("offset");
+        // }
 
 
 
-        let aTag = document.querySelectorAll(".topNavBar  nav>ul>li>a");
-        for (let i = 0; i < aTag.length; i++) {
-            aTag[i].onclick = function (e) {
-                e.preventDefault();
-                let a = e.currentTarget;
-                let href = a.getAttribute("href");
 
-                let element = document.querySelector(href);
-                let top = element.offsetTop;
+        // let bar = document.querySelectorAll(".bar");
+        // for (let i = 0; i < bar.length; i++) {
+        //     bar[i].classList.add("offset");
+        // }
 
-                // let time = 1000;
 
-                let now = window.scrollY; //现在的位置
-                // console.log("现在的位置:"+now)
-                let target = top - 80 //目标位置
+        // setTimeout(() => {
+        //     findClosestAndRemoveOffset();
+        // }, 1000);
 
-                // 设置循环动画
-                function animate(time) {
-                    requestAnimationFrame(animate);
-                    TWEEN.update(time);
-                }
-                requestAnimationFrame(animate);
+        // window.addEventListener("scroll",()=>{
+        //     findClosestAndRemoveOffset();
+        // })
+        // window.addEventListener("scroll", (e)=> {
+        //     if (window.scrollY > 0) {
+        //         topNavBar.classList.add("sticky")
+        //     } else {
+        //         topNavBar.classList.remove("sticky")
+        //     }
 
-                var coords = {
-                    y: now
-                }; // 起始点 (0, 0)
-                var tween = new TWEEN.Tween(coords) // 创建一个新的tween用来改变 'coords'
-                    .to({
-                        y: target
-                    }, 1000) // 在1s内移动至 (300, 200)
-                    .easing(TWEEN.Easing.Quadratic.Out) // 使用缓动功能使的动画更加平滑
-                    .onUpdate(function () { // 在 tween.js 更新 'coords' 后调用
-                        window.scrollTo(0, coords.y);
-                    })
-                    .start(); // 立即开始 tween
-            }
-        }
+        // })
+
+        // function findClosestAndRemoveOffset() {
+        //     let min = 0;
+        //     let special = document.querySelectorAll("[data-x]");
+        //     for (let i = 0; i < special.length; i++) {
+        //         if (Math.abs(special[i].offsetTop - window.scrollY) < Math.abs(special[min].offsetTop - window
+        //                 .scrollY)) {
+        //             min = i;
+        //         }
+        //     }
+        //     special[min].classList.remove("offset");
+        //     let id = special[min].getAttribute("id");
+
+        //     // console.log(id);
+        //     let a = document.querySelector("a[href='#" + id + "']");
+        //     // console.log(a);
+        //     let li = a.parentElement;
+        //     let brothersAndMe = li.parentNode.children
+        //     for (let i = 0; i < brothersAndMe.length; i++) {
+        //         brothersAndMe[i].classList.remove("linehigh");
+        //     }
+        //     li.classList.add("linehigh");
+        // }
+
+
+
+
+        // let submenu = document.querySelectorAll(".topNavBar .submenu")
+
+        // for (let i = 0; i < submenu.length; i++) {
+        //     submenu[i].parentElement.onmouseover = function (e) {
+        //         submenu[i].classList.add("active");
+        //     }
+        //     submenu[i].parentElement.onmouseout = function (e) {
+        //         submenu[i].classList.remove("active");
+        //     }
+        // }
+
+
+
+        // let aTag = document.querySelectorAll(".topNavBar  nav>ul>li>a");
+        // for (let i = 0; i < aTag.length; i++) {
+        //     aTag[i].onclick = function (e) {
+        //         e.preventDefault();
+        //         let a = e.currentTarget;
+        //         let href = a.getAttribute("href");
+
+        //         let element = document.querySelector(href);
+        //         let top = element.offsetTop;
+
+        //         // let time = 1000;
+
+        //         let now = window.scrollY; //现在的位置
+        //         // console.log("现在的位置:"+now)
+        //         let target = top - 80 //目标位置
+
+        //         // 设置循环动画
+        //         function animate(time) {
+        //             requestAnimationFrame(animate);
+        //             TWEEN.update(time);
+        //         }
+        //         requestAnimationFrame(animate);
+
+        //         var coords = {
+        //             y: now
+        //         }; // 起始点 (0, 0)
+        //         var tween = new TWEEN.Tween(coords) // 创建一个新的tween用来改变 'coords'
+        //             .to({
+        //                 y: target
+        //             }, 1000) // 在1s内移动至 (300, 200)
+        //             .easing(TWEEN.Easing.Quadratic.Out) // 使用缓动功能使的动画更加平滑
+        //             .onUpdate(function () { // 在 tween.js 更新 'coords' 后调用
+        //                 window.scrollTo(0, coords.y);
+        //             })
+        //             .start(); // 立即开始 tween
+        //     }
+        // }
     </script>
+
 </body>
 
 </html>
