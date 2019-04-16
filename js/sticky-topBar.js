@@ -1,5 +1,6 @@
 !function(){
-    let view = document.getElementById("topNavBar");
+    // let view = document.getElementById("topNavBar");
+    let view = View("#topNavBar")
     let controller = {
         view: null,
         init:function(view){
