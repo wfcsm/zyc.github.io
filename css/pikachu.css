@@ -12,11 +12,19 @@
 html{
     background: #1f1f1f;
 }
+.wrapper{
+    width: 100vh;
+    height: 100vh;
+}
 .main {
     width: 360px;
     height: 452px;
     margin: 0 auto;
-    position: relative;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translateX(-50%) translateY(-50%);
+
 }
 .head {
     width: 183px;
